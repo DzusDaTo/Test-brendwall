@@ -58,7 +58,7 @@ python manage.py runserver
 
 ## API
 
-##Получение списка продуктов: 
+## Получение списка продуктов: 
 
 Отправьте GET запрос на http://127.0.0.1:8000/api/products/ с параметрами фильтрации name, description, min_price, и max_price (опционально).
 
