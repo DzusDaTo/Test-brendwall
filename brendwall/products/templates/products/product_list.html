@@ -7,6 +7,20 @@
 </head>
 <body>
     <h1>Product List</h1>
+
+    <!-- Форма фильтрации -->
+    <form id="filter-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description">
+        <label for="min_price">Min Price:</label>
+        <input type="number" id="min_price" name="min_price" step="0.01">
+        <label for="max_price">Max Price:</label>
+        <input type="number" id="max_price" name="max_price" step="0.01">
+        <button type="button" onclick="filterProducts()">Filter</button>
+    </form>
+
     <table id="product-table" border="1">
         <thead>
             <tr>
@@ -20,11 +34,12 @@
             <!-- Продукты будут загружены здесь динамически -->
         </tbody>
     </table>
+
     <a href="{% url 'product_form' %}">Add Product</a>
 
     <script>
-        function loadProducts() {
-            fetch('{% url "list_products" %}')
+        function loadProducts(params = '') {
+            fetch(`{% url "list_products" %}?${params}`)
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.querySelector('#product-table tbody');
@@ -43,8 +58,25 @@
                 .catch(error => console.error('Error:', error));
         }
 
-        document.addEventListener('DOMContentLoaded', loadProducts);
+        function filterProducts() {
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const minPrice = document.getElementById('min_price').value;
+            const maxPrice = document.getElementById('max_price').value;
+
+            // Создаем параметры для фильтрации
+            const params = new URLSearchParams();
+            if (name) params.append('name', name);
+            if (description) params.append('description', description);
+            if (minPrice) params.append('min_price', minPrice);
+            if (maxPrice) params.append('max_price', maxPrice);
+
+            loadProducts(params.toString());
+        }
+
+        document.addEventListener('DOMContentLoaded', () => loadProducts());
     </script>
 </body>
 </html>
+
 
