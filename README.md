@@ -33,30 +33,30 @@ git clone https://github.com/ваше_имя_пользователя/product-ma
 cd product-management
 ```
 
-#Создайте виртуальное окружение и активируйте его:
+## Создайте виртуальное окружение и активируйте его:
 ```bash
 python -m venv venv
 source venv/bin/activate  # Для Windows используйте `venv\Scripts\activate`
 ```
-#Создайте и примените миграции базы данных:
+## Создайте и примените миграции базы данных:
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-#Запустите сервер разработки:
+## Запустите сервер разработки:
 
 ```bash
 python manage.py runserver
 ```
 
-#Использование
+## Использование
 
 Список продуктов
 Перейдите на http://127.0.0.1:8000/products/ для просмотра и фильтрации продуктов.
 
-#API
+## API
 
 Получение списка продуктов: Отправьте GET запрос на http://127.0.0.1:8000/api/products/ с параметрами фильтрации name, description, min_price, и max_price (опционально).
 
@@ -64,7 +64,7 @@ python manage.py runserver
 GET /api/products/?name=монитор&min_price=500&max_price=2000
 ```
 
-#Создание продукта: Отправьте POST запрос на http://127.0.0.1:8000/api/products/ с JSON телом запроса.
+## Создание продукта: Отправьте POST запрос на http://127.0.0.1:8000/api/products/ с JSON телом запроса.
 
 Пример JSON для создания продукта:
 
@@ -76,7 +76,7 @@ GET /api/products/?name=монитор&min_price=500&max_price=2000
 }
 ```
 
-#Тестирование
+## Тестирование
 
 Для запуска тестов используйте следующую команду:
 
